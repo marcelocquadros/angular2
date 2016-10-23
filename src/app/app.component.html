@@ -1,3 +1,32 @@
-<h1>
-  {{title}}
-</h1>
+<form #f="ngForm" (ngSubmit)="save(f)">
+  <label for="username">First Name</label><br/>
+  <input type="text" [(ngModel)]="person.firstname" name="username"/><br/>
+  <label for="lastname">Last Name</label><br/>
+  <input type="text" [(ngModel)]="person.lastname" name="lastname"/><br/>
+  <label for="age">Age</label><br/>
+  <input type="text" [(ngModel)]="person.age" name="age"/><br/>
+  <input type="submit"  value="Save"/>
+</form>
+<br/>
+<input type="button" value="Get Persons" (click)="findPersons()"/>
+
+<table>
+  <tr>
+    <th>id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Action</th>
+  </tr>
+  <tr  *ngFor="let p of persons">
+    <td>{{p._id}}</td>
+    <td>{{p.firstname}}</td>
+    <td>{{p.lastname}}</td>
+    <td>{{p.age}}</td>
+    <td>
+      <a href="#" (click)="delete(p._id)">Delete</a>
+      <a href="#" (click)="startEdit(p)">Edit</a>
+    </td>
+  </tr>
+</table>
+
